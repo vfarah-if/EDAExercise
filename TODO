@@ -1,4 +1,7 @@
 ✔ Create a high level documentation of what is needed to be done or has been done and why we need it @high @done(24-03-11 11:26)
-☐ Create a list of base POC's or links to solve what needs to be done and why it will be needed technically @critical
-☐ Investigate tools for communicating Contracts between layers @critical @today 
-☐ Create a repository talking about the standards of what will be needed or done @high
+✔ Create a list of base POC's or links to solve what needs to be done and why it will be needed technically @critical @done(24-03-14 18:19)
+✔ Investigate tools for communicating Contracts between layers @critical @today @done(24-03-14 18:19)
+✔ Create a repository talking about the standards of what will be needed or done @high @done(24-03-14 18:19)
+☐ Document this in the README for interest to the outside world @inprogress
+	✔ Add Kafka document @low @done(24-03-14 19:10)
+	☐ Add Event Bus and document
