@@ -1,5 +1,5 @@
 # EDAExercise
-**Event Driven Architecture Exercise** is about exploring the latest event driven patterns with a few bits of tech and a library. Key decisions where taken before hand to help focus the decisions to focus in on tech.
+**Event Driven Architecture Exercise** is about exploring the latest event driven patterns with a few bits of tech and a library. Key decisions where taken before hand to help focus this discussion but the details can be understood in the demo samples attached.
 
 1. Utilise [Streaming instead of Messaging](https://risingwave.com/blog/differences-between-messaging-queues-and-streaming-a-deep-dive/) inorder to facilitate event sourcing patterns and horizontal scaling
    - **Messaging Queues**: Messaging queues are a form of middleware that handle messages (data packets) between applications. They ensure that messages sent from a producer service are properly received by a consumer service, even if the consumer is not ready to process them immediately.
@@ -172,6 +172,10 @@ TODO: Document within the sample and show
 This sample shows how to use MassTransit with Kafka. The sample is explored in detail in Chris Patterson's [my YouTube series](https://youtu.be/CJ_srcJiIKs). Very good and all compliments to this smart guy who shares with the community like no other.
 
 Requires Kafka (via [Confluent Cloud](https://www.confluent.io/confluent-cloud/)) MongoDB (via [MongoDB Atlas](https://www.mongodb.com/atlas/database))
+
+# Conclusion
+
+In the end, we chose Azure Event Hubs over Confluent because it was cheaper, and good enough for the purpose. I really loved Confluent as it was very easy to understand and use. Masstransit seemed very good for Service Bus and other patterns but I could not get it to work well with Event Hubs, so I decided on my own simple patterns with the Azure SDK as I didn't need the circuit breaker, transactional, throttling and error patterns that I think Masstransit is great for. I hope this was useful for you.
 
 
 
