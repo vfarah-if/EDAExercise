@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "ProductDetail": {
+      "type": "object",
+      "properties": {
+        "Sku": {
+          "type": "string",
+          "minLength": 6
+        },
+        "SerialNumber": {
+          "type": "string",
+          "minLength": 6
+        }
+      },
+      "required": ["Sku", "SerialNumber"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "SourceSystemId": {
+      "type": "string",
+      "minLength": 6
+    },
+    "EventId": {
+      "type": "string",
+      "minLength": 24
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "PurchaseOrderNumber": {
+      "type": "string",
+      "minLength": 6
+    },
+    "DeliveryLocation": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "Products": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ProductDetail" },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": ["SourceSystemId", "EventId", "Timestamp", "PurchaseOrderNumber", "DeliveryLocation", "Products"]
+}
