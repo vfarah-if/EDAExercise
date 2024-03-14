@@ -80,7 +80,7 @@ The full example can be seen [here](./EventHubSpike/EventHubProducer)
 
 ### Create a Consumer for Azure Event Hub
 
-The consumer was more advanced in the sense that it was broken into discoverable Consumers by the generic Consumer interface interface and a bespoke `EventHubConsumerProvider<TestMessage>` was created to encapsulate all the consumer logic in future as a sample for easily discovering . Read more in the SDK strategies available [here](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs/samples/Sample05_ReadingEvents.md#read-events-from-all-partitions).
+The consumer was more advanced in the sense that it was broken into discoverable Consumers by the generic Consumer interface and a bespoke `EventHubConsumerProvider<TestMessage>` was created to encapsulate all the consumer logic in future as a sample for easily configuring and discovering the consumers. This could be replaced very simply with some sort of mediator or command pattern for achieving this. Read more in the SDK strategies available [here](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/eventhub/Azure.Messaging.EventHubs/samples/Sample05_ReadingEvents.md#read-events-from-all-partitions).
 
 ```c#
 // Simple consumer discovery by reflection
@@ -96,7 +96,8 @@ _testMessageConsumerProvider = new EventHubConsumerProvider<TestMessage>(
     _logger,
     consumers!  // or new ExampleConsumer(_logger), new ExampleOtherConsumer(_logger)
   
-// Configuring dynamic ways to read the streamed events from the beginning or at the end
+// Configuring dynamic ways to read the streamed events from the beginning or at the end 
+// showing the event sourcing and the way this works when events get fired
 using var cancellationSource = new CancellationTokenSource();
     await (
         withReload
@@ -114,17 +115,17 @@ using var cancellationSource = new CancellationTokenSource();
 The Consumer itself can be decorated with an `IConsumer<Model>` interface with patterns that validate and make sure if any errors occur that it is logged.
 
 ```c#
-// A simple example expanding on logging and async patterns
+// A simple example expanding on logging with async patterns
 public class ExampleConsumer(ILogger logger) : IConsumer<TestMessage>
 {
     public Task ExecuteAsync(TestMessage data)
     {
         // Always catch errors to prevent blocking other consumers
-      	// or we can do this in the code that iterates over the list to make it less worrying
+      	// or we can do this in the code that iterates over the list to make it more reliable
         try
         {
             // An example of checking via data annotations or json schema, what you expected is here or this can
-            // be configured in Event Hub and always correct from here on
+            // be configured in Event Hub and always correct from here on through Schema validation mechanisms
             if (data.IsValid(out var errors))
             {
                 logger.LogInformation(
@@ -145,7 +146,7 @@ public class ExampleConsumer(ILogger logger) : IConsumer<TestMessage>
 
 ```
 
-Dynamically discovering the Consumers in the assembly was done through very simple reflection but Dependency injection and other more sophisticated techniques can be deployed to help make this a reality.
+Dynamically discovering the Consumers in the assembly was done through very simple reflection but dependency injection and other more sophisticated techniques can be deployed to help make this production worthy.
 
 The full example can be seen [here](./EventHubSpike/EventHubConsumer)
 
