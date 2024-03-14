@@ -175,7 +175,7 @@ Requires Kafka (via [Confluent Cloud](https://www.confluent.io/confluent-cloud/)
 
 # Conclusion
 
-In the end, we chose Azure Event Hubs over Confluent because it was cheaper, and good enough for the purpose. I really loved Confluent as it was very easy to understand and use. Masstransit seemed very good for Service Bus and other patterns but I could not get it to work well with Event Hubs, so I decided on my own simple patterns with the Azure SDK as I didn't need the circuit breaker, transactional, throttling and error patterns that I think Masstransit is great for. I hope this was useful for you.
+In the end, we chose Azure Event Hubs over Confluent because it was cheaper, and good enough for the purpose. I really loved Confluent as it was very easy to understand and use and had a wonderful dashboard and user experience. I think the biggest issue is the price and the multi tenancy and RBAC support within Azure. Masstransit seemed very good for Service Bus and other patterns but I could not get it to work well with Event Hubs, so I decided to use my own simple patterns with the Azure SDK, as I didn't need the circuit breaker, transactional, throttling and error patterns that I think Masstransit is great for. I hope this is useful to help you get your hands dirty.
 
 
 
