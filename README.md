@@ -164,9 +164,29 @@ SystemTextJsonExample();
 
 The full example can be seen [here](./EventHubSpike/EventHubValidator)
 
-### Show Mass Transit working with in-memory, Azure Event Hubs and Azure Service Bus
+### Show MassTransit working with in-memory, Azure Event Hubs and Azure Service Bus
 
-TODO: Document within the sample and show
+This was a mix between all the MassTransit samples merged into one. It is a great starting point for getting into the MassTransit space using https://masstransit.io/quick-starts/in-memory In the end I created a sample locally using the NassTransit template and loved every bit of the experience.
+
+Like everything hard, I started with Helloworld
+
+![Hello World Getting Started sample](./hello-world.png)
+
+This helped me to very easily configure the same application with different Bus Types Demo options.
+
+``` c#
+// Program.cs
+// Change this value to run under different circumstances
+private static readonly BusTypeDemoOption _busTypeDemoOption = BusTypeDemoOption.InMemory;
+
+// Discovers the Consumers
+busRegistrationConfigurator.AddConsumers(entryAssembly);
+
+// Is the Producer
+services.AddHostedService<SimplePublishService>();
+```
+
+The full example can be seen [here](./GettingStarted)
 
 ### Evaluation between Azure Event Hub and Confluent Kafka using Mass Transit
 
@@ -176,7 +196,7 @@ Requires Kafka (via [Confluent Cloud](https://www.confluent.io/confluent-cloud/)
 
 # Conclusion
 
-In the end, we chose Azure Event Hubs over Confluent because it was cheaper, and good enough for the purpose. I really loved Confluent as it was very easy to understand and use and had a wonderful dashboard and user experience. I think the biggest issue is the price and the multi tenancy and RBAC support within Azure. Masstransit seemed very good for Service Bus and other patterns but I could not get it to work well with Event Hubs, so I decided to use my own simple patterns with the Azure SDK, as I didn't need the circuit breaker, transactional, throttling and error patterns that I think Masstransit is great for. I hope this is useful to help you get your hands dirty.
+In the end, we chose Azure Event Hubs over Confluent because it was cheaper, and good enough for the purpose. I really loved Confluent as it was very easy to understand and use and had a wonderful dashboard and user experience. I think the biggest issue is the price and the multi tenancy and RBAC support within Azure being more what I needed. Masstransit seemed very good for Service Bus and other patterns but I could not get it to work well with Event Hubs, so I decided to use my own simple patterns with the Azure SDK, as I didn't need the circuit breaker, transactional, throttling and error patterns that I think Masstransit is great for. I hope this is useful to help you get your hands dirty with some things Event Driven.
 
 
 
