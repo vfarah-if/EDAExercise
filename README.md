@@ -18,7 +18,7 @@ Key technology requirments for this talk where driven by:
 2. Utilise [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) and [Azure Service bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) to facilitate the above as well as patterns for throttling
 3. Investigate [Kafka](https://kafka.apache.org/) and [Confluent Kafka](https://www.confluent.io/) as alternatives to achieving the same result
 4. Utilise a library called [Masstransit.io](https://masstransit.io/) for quick intoduction to patterns on easily accesing consumer and producer patterns and a lot more
-5. A small Power Point display can be found summarising all of this [here](./EventDrivenArchitecture-public.pdf)?
+5. A small slide or pdf can be found [here](./EventDrivenArchitecture-public.pdf)?
 
 ## Architectural high level requirments
 
