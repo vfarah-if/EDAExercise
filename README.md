@@ -1,5 +1,16 @@
 # Event Driven Architecture Exercise
-This about exploring the latest event driven patterns with a few bits of tech and a library. Key decisions where taken before hand to help focus this discussion but the details can be understood in the demo samples attached.
+This about exploring the latest event driven patterns with a few bits of tech and a library. Key decisions where taken before hand to help focus this discussion but the details can be understood in the demo samples attached. 
+
+For anyone new to all of this, it is a fast mechansim that companies like Uber take advantage to get huge volumes of data from one sytem to another in a very loosly coupled way with high speed and scalibility patterns in place. One important thing is to guarantee order and the other is to scale cheaply.
+
+**Event-driven architecture** is commonly used in various applications, including:
+
+- **Real-time** data processing
+- **Microservices**-based systems
+- IoT (**Internet of Things**) applications
+- Systems that require high levels of **concurrency** and **responsiveness**
+
+Key technology requirments for this talk where driven by:
 
 1. Utilise [Streaming instead of Messaging](https://risingwave.com/blog/differences-between-messaging-queues-and-streaming-a-deep-dive/) inorder to facilitate event sourcing patterns and horizontal scaling
    - **Messaging Queues**: Messaging queues are a form of middleware that handle messages (data packets) between applications. They ensure that messages sent from a producer service are properly received by a consumer service, even if the consumer is not ready to process them immediately.
@@ -11,11 +22,11 @@ This about exploring the latest event driven patterns with a few bits of tech an
 
 ## Architectural high level requirments
 
-Below is a very high level diagram representing where this will fit and what the purpose of the event mechanism will be. The future of this could extend to a lot of services but in this narrow vertical, it was SAP -> Product Domain Service -> Search Domain Service. 
+Below is party of very high level diagram representing a small aspect of where this will fit just to layout where this technology would be relevant as an example for discussion. The future of this could extend to a lot of services but in this narrow vertical, for this purpose will be `SAP > Product Domain Service > Search Domain Service > Search Vendor `.
 
 ![EDA Architecture](./eda-architcture.png)
 
-The base requirements and ways of working:
+Questions we may ask for each level could be:
 
 1. SAP, as an example,  or **entry system** and tool for creating contracts for providing Product data or source data
    - Investigate https://cloudevents.io/
@@ -27,14 +38,15 @@ The base requirements and ways of working:
    - Using Azure Event Hub direct as a **Producer**?
    - **Other** SAP/Entry Service mechanism?
 4. How does the **Product Domain Service** show its healthy?
-   - What happens when it is down and how can it fail - Azure Event Hub is down?
-   - What happens when it fails half way?
-   - How long do we persist information? How do we read the data, is it by the last offset, by date or all the data ever created into Eventhub by the configured durability or all three by some dynamic argument?
-   - What groups do we create and why do we create these groups?
-   - What partitions do we create and which partition applies to who?
-   - What happens when the event validation does not succeed like data is missing or the schema changes?
-5. How do we keep the schema versioned?
-6. Who has permission to read, write and own the events?
+   - What happens when the service is down and how can it fail, like Azure Event Hub or a Kubernete stack, or the Vendor is down?
+   - What happens when it fails during a **run**?
+   - How long do we **persist** information and how does this occur? 
+   - How do we **read** the data, is it by the last offset, by date or all the data ever created into Eventhub by the configured durability or all three by some dynamic argument?
+   - What **groups** do we create and why do we create these groups?
+   - What **partitions** do we create and which partition applies to who?
+   - What happens when the **event validation** fails like data is missing or the schema changes?
+5. How do we keep the **schema versioned**?
+6. Who has **permission** to read, write and own the events?
 
 ## Data Validation
 
