@@ -153,7 +153,7 @@ The full example can be seen [here](./EventHubSpike/EventHubConsumer)
 
 ### Evaluate data validation for all kinds of events
 
-The validation was broken up into each type of validation concept and an example of how to utilise it. This is the most important part for understanding the data validation and contracts taht need to be importantly defined and maintained by all. Lots of investigation was done above
+The validation was broken up into each type of validation concept and an example of how to utilise it. This is the most important part for understanding the data validation and contracts that need to be importantly defined and maintained by all. Lots of investigation was done above
 
 ```c#
 JsonSchemaExample();
@@ -166,9 +166,9 @@ The full example can be seen [here](./EventHubSpike/EventHubValidator)
 
 ### Show MassTransit working with in-memory, Azure Event Hubs and Azure Service Bus
 
-This was a mix between all the MassTransit samples merged into one. It is a great starting point for getting into the MassTransit space using https://masstransit.io/quick-starts/in-memory In the end I created a sample locally using the NassTransit template and loved every bit of the experience.
+This was a mix between all the MassTransit samples merged into one. It is a great starting point for getting into the MassTransit space using https://masstransit.io/quick-starts/in-memory. In the end I created a sample locally using the MassTransit template and loved every bit of the experience.
 
-Like everything hard, I started with Helloworld
+Like everything hard, I started with Helloworld to go through all the basic concepts
 
 ![Hello World Getting Started sample](./hello-world.png)
 
